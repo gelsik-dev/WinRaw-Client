@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/images/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/images/android-chrome-512x512.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="assets/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+  <link rel="manifest" href="assets/images/images-others/site.webmanifest">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+  <title>WinRaw - Codigos FFMPEG contigo, y para siempre | Gelsik</title>
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: #e0e0e0;
+      font-family: monospace;
+      padding: 2rem;
+    }
+	h2, h3 {
+      color: #0078d7;
+    }
+	h1 {
+      font-family: "Special Gothic Expanded One", sans-serif;
+      color: #0078d7;
+	  text-align: center;
+	  font-size: 3.0em;
+	}
+	h4 {
+	  font-size: 1.5em;
+	}
+	.descripcion {
+	  font-size: 1.5em;
+	}
+	.copiarTextoddsi {
+      display: none;
+	}
+	.titulosdeguia {
+	  font-size: 1.5em;
+	}
+    .box {
+      background: #1a1a1a;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+    }
+    textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      background: #0078d7;
+      color: #ffffff;
+      border: 1px solid #444;
+      border-radius: 5px;
+      font-family: monospace;
+    }
+    button {
+      background: #0078d7;
+      color: #000;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+	.terminal-style {
+	 font-family: monospace;
+	 white-space: pre;
+	 color: #00cfff;
+	 font-weight: bold;
+	 font-size: 1.1em;
+	}
+  </style>
+</head>
+<body>
+	<div style="text-align: center;">
+      <img src="assets/images/logo.png" title="WinRaw Logo, if you see this, you are a very interesting human!" width="200"
+      height="200"/>
+    </div>
+  <h1>WinRaw 💙</h1>
+  <p class="descripcion">Hola! Buenos dias, buenas tardes y buenas noches! 😅, Soy Gelsik, desarrollador de este programa, este programa te recopila algunos cuantos codigos FFmpeg que a Gelsik le gustan mucho!</p>
+
+  <div class="box">
+    <h2>⬝ Tu codigo personal</h2>
+    <label>=== COMANDO FFMPEG ===</label>
+    <textarea id="cmdInput" rows="3"></textarea>
+	<button onclick="saveData()">💾 Guardar</button>
+    <!--Esto lo voy a quitar porque de momento no lo necesitamos, a que estamos de acuerdo!!??-->
+	<!--<label>=== NOTAS ===</label>
+    <textarea id="notesInput" rows="3"></textarea>
+    <label>=== ¿QUÉ HICISTE HOY? ===</label>
+    <textarea id="todayInput" rows="3"></textarea>-->
+  </div>
+
+  <div class="box">
+  <h2>📄 Tus datos guardados</h2>
+  <pre id="savedOutput">🕸️ Aún no has guardado nada...</pre>
+  <button id="deleteButton" onclick="borrarDatos()" style="display: none;">🗑️ Borrar Comando</button>
+  </div>
+  <label>⚠ SI QUIERES ELIMINAR TU REGISTRO DE CODIGOS, NOTAS... SOLO DEBE DE BORRAR LAS COOKIES DE LA WEB</label>
+  <hr>
+  <label>⚠ EL TEXTO QUE VA A VER A CONTINUACION SE ACTUALIZA DESDE UNA API QUE SE CONECTA A UN SERVIDOR. Y POR ESO PUEDE HABER ERRORES.
+  SI VE ALGUN ERROR CONTACTE EN EL REPOSITORIO OFICIAL DE GITHUB.</label>
+  <hr>
+
+    <div class="box" id="htmlBox">
+    <h2>Cargando datos desde un archivo TXT alojado en el misterioso mundo de Internet...</h2>
+  </div>
+
+  <script>
+	// Función para cargar el archivo de texto
+      function cargarContenidoBox() {
+        fetch("content.txt") // Ruta del archivo .txt
+          .then(response => response.text())
+          .then(data => {
+            // Carga el contenido del archivo en el div con id="htmlBox"
+            document.getElementById("htmlBox").textContent = data;
+          })
+          .catch(error => {
+            console.error("Error al cargar el archivo .txt:", error);
+            document.getElementById("htmlBox").innerHTML = "<p>Hubo un problema al cargar el archivo de texto.</p>";
+          });
+      }
+	  
+	  // Llamada para cargar el contenido tan pronto como se cargue la página
+      window.onload = cargarContenidoBox;
+	
+	function saveData() {
+      const cmd = document.getElementById('cmdInput').value;
+      // Otra vez :(((
+	  // const notes = document.getElementById('notesInput').value;
+      // const today = document.getElementById('todayInput').value;
+
+      const data = {
+        cmd,
+      //  notes,
+      //  today
+      };
+
+      localStorage.setItem('winrawConfig', JSON.stringify(data));
+      showData();
+    }
+
+    function showData() {
+  const data = JSON.parse(localStorage.getItem('winrawConfig') || '{}');
+  const output = document.getElementById('savedOutput');
+  const deleteButton = document.getElementById('deleteButton');
+
+  if (!data.cmd || data.cmd.trim() === '') {
+    output.textContent = '🕸️ Aún no has guardado nada...';
+    deleteButton.style.display = 'none';
+  } else {
+    output.textContent = `=== Codigo FFMPEG ===\n${data.cmd}`;
+    deleteButton.style.display = 'inline-block';
+  }
+}
+
+ const copiarContenido = async () => {
+  try {
+    const texto = document.getElementById('copiarTextoddsi').innerText;
+    await navigator.clipboard.writeText(texto);
+    alert('Contenido copiado al portapapeles');
+  } catch (err) {
+    console.error('Error al copiar: ', err);
+    alert('Error al copiar al portapapeles');
+  }
+}
+
+function borrarDatos() {
+  const confirm1 = confirm('⚠️ ¿Estás seguro de que quieres borrar el comando guardado? Esta acción no se puede deshacer.');
+  if (!confirm1) return;
+
+  const confirm2 = confirm('🛑 Confirmación final: ¿Realmente quieres eliminarlo?');
+
+  if (confirm2) {
+    localStorage.removeItem('winrawConfig');
+    showData();
+    alert('Comando eliminado con éxito.');
+  } else {
+    alert('Eliminación cancelada.');
+  }
+}
+
+    window.onload = showData;
+  </script>
+</body>
+</html>
