@@ -1,0 +1,66 @@
+<div class="terminal-style">
+___       ______       ________                  
+__ |     / /__(_)_________  __ \_____ ___      __
+__ | /| / /__  /__  __ \_  /_/ /  __ `/_ | /| / /
+__ |/ |/ / _  / _  / / /  _, _// /_/ /__ |/ |/ / 
+____/|__/  /_/  /_/ /_//_/ |_| \__,_/ ____/|__/  
+
+Ver: 1.0 (estrenando winraw!)                                             
+=================================================
+             WinRaw - RAW VIDEO/AUDIO Converter
+       (Visualización de datos binarios)
+=================================================
+    </div>
+
+    <h3 class="titulosdeguia">📦 COMANDO BASE CON FFMPEG</h3>
+    <h4>
+ffmpeg -f u8 -ar 44100 -ac 2 -i data.win \
+       -f rawvideo -pix_fmt rgb555 -r 25 -s 42x42 -i data.win \
+       -vf scale=w=32*iw:h=32*ih:sws_flags=neighbor \
+       -b:v 50000k output.avi -y
+    </h4>
+
+    <!-- Texto invisible para copiar -->
+    <p class="copiarTextoddsi">ffmpeg -f u8 -ar 44100 -ac 2 -i data.win -f rawvideo -pix_fmt rgb555 -r 25 -s 42x42 -i data.win -vf scale=w=32*iw:h=32*ih:sws_flags=neighbor -b:v 50000k output.avi -y</p>
+    <button onclick="copiarContenido()">Copiar codigo</button>
+	
+	  <hr>
+
+    <h3 class="titulosdeguia">🧩 PARÁMETROS CAMBIABLES</h3>
+
+    <h3>🎥 VIDEO</h3>
+    <pre>
+| Parámetro  | Valores comunes         | Descripción                        |
+|------------|--------------------------|-----------------------------------|
+| -pix_fmt   | rgb555, gray             | Formato de píxel crudo            |
+| -s         | 42x42, 64x64, 128x128    | Resolución original               |
+| -r         | 25, 30, 60               | Frames por segundo                |
+| -b:v       | 1000k, 5000k, 50000k     | Bitrate de salida                 |
+    </pre>
+
+    <h3>🔊 AUDIO</h3>
+    <pre>
+| Parámetro  | Valores comunes   | Descripción                         |
+|------------|-------------------|-------------------------------------|
+| -f u8      | u8, s16le, f32le  | Formato crudo del audio             |
+| -ar        | 44100, 48000      | Sample rate                         |
+| -ac        | 1, 2              | Número de canales (mono, estéreo)   |
+    </pre>
+
+    <h3 class="titulosdeguia">🎯 ¿Qué es WinRaw?</h3>
+    <p>
+      WinRaw es una web para visualizar archivos binarios (.win, .bin, etc.) como si fueran video crudo usando ffmpeg.
+      También puedes escucharlos como audio o ambos a la vez si el archivo lo permite.
+    </p>
+    <blockquote>💡 ¿Quién dijo que los archivos binarios no tienen alma?</blockquote>
+    <p>
+      Ideal para:
+      <ul>
+        <li>Arte glitch / databending</li>
+        <li>Análisis de archivos desconocidos</li>
+        <li>Creatividad audiovisual</li>
+        <li>Convertir literalmente cualquier cosa</li>
+      </ul>
+    </p>
+    <blockquote>🎨 Ese save corrupto de 1998 puede renacer como video experimental en una galería de Berlín.</blockquote>
+</div>
