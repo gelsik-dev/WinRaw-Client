@@ -13,7 +13,7 @@
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
-      <title>WinRaw - Codigos FFMPEG contigo, y para siempre | Gelsik</title>
+      <title>WinRaw - Fin de Soporte | Gelsik</title>
       <style>
          body {
          background-color: #0d0d0d;
@@ -36,18 +36,6 @@
          .descripcion {
          font-size: 1.5em;
          }
-         .copiarTextoddsi {
-         display: none;
-         }
-         .titulosdeguia {
-         font-size: 1.5em;
-         }
-         .box {
-         background: #1a1a1a;
-         padding: 1rem;
-         border-radius: 8px;
-         margin-bottom: 2rem;
-         }
          textarea {
          width: 100%;
          padding: 0.5rem;
@@ -57,16 +45,6 @@
          border: 1px solid #444;
          border-radius: 5px;
          font-family: monospace;
-         }
-         button {
-         background: #0078d7;
-         color: #000;
-         padding: 0.5rem 1rem;
-         border: none;
-         border-radius: 5px;
-         font-weight: bold;
-         cursor: pointer;
-         margin-top: 1rem;
          }
          .terminal-style {
          font-family: monospace;
@@ -82,31 +60,8 @@
          <img src="assets/images/logo.png" title="WinRaw Logo, if you see this, you are a very interesting human!" width="200"
             height="200"/>
       </div>
-      <h1>WinRaw 💙</h1>
-      <p class="descripcion">Hola! Buenos dias, buenas tardes y buenas noches! 😅, Soy Gelsik, desarrollador de este programa, este programa te recopila algunos cuantos codigos FFmpeg que a Gelsik le gustan mucho!</p>
-      <div class="box">
-         <h2>⬝ Tu codigo personal</h2>
-         <label>=== COMANDO FFMPEG ===</label>
-         <textarea id="cmdInput" rows="3"></textarea>
-         <button onclick="saveData()">💾 Guardar</button>
-         <!--Esto lo voy a quitar porque de momento no lo necesitamos, a que estamos de acuerdo!!??-->
-         <!--<label>=== NOTAS ===</label>
-            <textarea id="notesInput" rows="3"></textarea>
-            <label>=== ¿QUÉ HICISTE HOY? ===</label>
-            <textarea id="todayInput" rows="3"></textarea>-->
-      </div>
-      <div class="box">
-         <h2>📄 Tus datos guardados</h2>
-         <pre id="savedOutput">🕸️ Aún no has guardado nada...</pre>
-         <button id="deleteButton" onclick="borrarDatos()" style="display: none;">🗑️ Borrar Codigo</button>
-      </div>
-      <label>⚠ SI QUIERES ELIMINAR TU REGISTRO DE CODIGO, SOLO DEBE DE DAR CLICK AL BOTÓN DE BORRAR CODIGO PARA BORRAR
-	  (SI NO SE BORRA, TAMBIEN PUEDE BORRAR LAS COOKIES)</label>
-      <hr>
-      <label>⚠ EL TEXTO QUE VA A VER A CONTINUACION SE ACTUALIZA DESDE UNA API QUE SE CONECTA A UN SERVIDOR. Y POR ESO PUEDE HABER ERRORES.
-      SI VE ALGUN ERROR CONTACTE EN EL </label><a href="https://github.com/gelsik-dev/WinRaw-Client">REPOSITORIO OFICIAL DE GITHUB</a>
-      <hr>
-      <div class="box" id="htmlBox">
+      <h1>WinRaw 💔</h1>
+      <p class="descripcion">WinRaw - Fin de Soporte | Gracias por este apoyo (literalmente NULO, pero bueno, da igual), que habeis dado a WinRaw, por razones desconocidas tengo que eliminar WinRaw/WinRaw-Client (la API), GRACIAS POR EL APOYO.</p>
          <div class="terminal-style">
 ___       ______       ________                  
  __ |     / /__(_)_________  __ \_____ ___      __
@@ -118,107 +73,7 @@ Ver: 1.0 (estrenando winraw!)
 WinRaw - RAW VIDEO/AUDIO Converter
 (Visualización de datos binarios)
 =================================================
-         </div>
-         <h3 class="titulosdeguia">📦 COMANDO BASE CON FFMPEG</h3>
-         <h4>
-            ffmpeg -f u8 -ar 44100 -ac 2 -i data.win \
-            -f rawvideo -pix_fmt rgb555 -r 25 -s 42x42 -i data.win \
-            -vf scale=w=32*iw:h=32*ih:sws_flags=neighbor \
-            -b:v 50000k output.avi -y
-         </h4>
-         <!-- Texto invisible para copiar -->
-    <p class="copiarTextoddsi">ffmpeg -f u8 -ar 44100 -ac 2 -i data.win -f rawvideo -pix_fmt rgb555 -r 25 -s 42x42 -i data.win -vf scale=w=32*iw:h=32*ih:sws_flags=neighbor -b:v 50000k output.avi -y</p>
-    <button onclick="copiarContenido()">Copiar codigo</button>
-         <hr>
-         <h3 class="titulosdeguia">🧩 PARÁMETROS CAMBIABLES</h3>
-         <h3>🎥 VIDEO</h3>
-         <pre>
-| Parámetro  | Valores comunes         | Descripción                        |
-|------------|--------------------------|-----------------------------------|
-| -pix_fmt   | rgb555, gray             | Formato de píxel crudo            |
-| -s         | 42x42, 64x64, 128x128    | Resolución original               |
-| -r         | 25, 30, 60               | Frames por segundo                |
-| -b:v       | 1000k, 5000k, 50000k     | Bitrate de salida                 |
-    </pre>
-         <h3>🔊 AUDIO</h3>
-         <pre>
-| Parámetro  | Valores comunes   | Descripción                         |
-|------------|-------------------|-------------------------------------|
-| -f u8      | u8, s16le, f32le  | Formato crudo del audio             |
-| -ar        | 44100, 48000      | Sample rate                         |
-| -ac        | 1, 2              | Número de canales (mono, estéreo)   |
-    </pre>
-         <h3 class="titulosdeguia">🎯 ¿Qué es WinRaw?</h3>
-         <p>
-            WinRaw es una web para visualizar archivos binarios (.win, .bin, etc.) como si fueran video crudo usando ffmpeg.
-            También puedes escucharlos como audio o ambos a la vez si el archivo lo permite.
-         </p>
-         <blockquote>💡 ¿Quién dijo que los archivos binarios no tienen alma?</blockquote>
-         <p>
-            Ideal para:
-         <ul>
-            <li>Arte glitch / databending</li>
-            <li>Análisis de archivos desconocidos</li>
-            <li>Creatividad audiovisual</li>
-            <li>Convertir literalmente cualquier cosa</li>
-         </ul>
-         </p>
-         <blockquote>🎨 Ese save corrupto de 1998 puede renacer como video experimental en una galería de Berlín.</blockquote>
       </div>
       </div>
-      <script>
-   const copiarContenido = async () => {
-      try {
-         const texto = document.querySelector('.copiarTextoddsi').textContent;
-         await navigator.clipboard.writeText(texto);
-         alert('Contenido copiado al portapapeles');
-      } catch (err) {
-         console.error('Error al copiar: ', err);
-         alert('Error al copiar al portapapeles');
-      }
-   }
-
-   function saveData() {
-      const cmd = document.getElementById('cmdInput').value;
-
-      const data = {
-         cmd,
-      };
-
-      localStorage.setItem('winrawConfig', JSON.stringify(data));
-      showData();
-   }
-
-   function showData() {
-      const data = JSON.parse(localStorage.getItem('winrawConfig') || '{}');
-      const output = document.getElementById('savedOutput');
-      const deleteButton = document.getElementById('deleteButton');
-
-      if (!data.cmd || data.cmd.trim() === '') {
-         output.textContent = '🕸️ Aún no has guardado nada...';
-         deleteButton.style.display = 'none';
-      } else {
-         output.textContent = `=== Codigo FFMPEG ===\n${data.cmd}`;
-         deleteButton.style.display = 'inline-block';
-      }
-   }
-
-   function borrarDatos() {
-      const confirm1 = confirm('⚠️ ¿Estás seguro de que quieres borrar el comando guardado? Esta acción no se puede deshacer.');
-      if (!confirm1) return;
-
-      const confirm2 = confirm('🛑 Confirmación final: ¿Realmente quieres eliminarlo?');
-
-      if (confirm2) {
-         localStorage.removeItem('winrawConfig');
-         showData();
-         alert('Comando eliminado con éxito.');
-      } else {
-         alert('Eliminación cancelada.');
-      }
-   }
-
-   window.onload = showData;
-</script>
    </body>
 </html>
